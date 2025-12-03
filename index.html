@@ -29,9 +29,9 @@
 
     <!-- HERO -->
   <section class="hero">
-    <div class="container hero-inner">
-      <div>
-        <h1 class="hero-title">Привіт, я QA-ментор</h1>
+  <div class="container hero-inner">
+    <div>
+      <h1 class="hero-title">Привіт, я QA-ментор</h1>
         <p class="hero-subtitle">
           Допомагаю студентам та джунам перейти в тестування: від перших тест-кейсів до
           успішної співбесіди на Junior QA.
@@ -47,7 +47,10 @@
         </div>
       </div>
       <div class="hero-card">
-        <div class="hero-avatar">QA</div>
+        
+        <div class="hero-avatar">
+          <img src="img/qa-mentor.png" alt="Фото QA-ментора">
+        </div>
         <div><strong>QA-ментор для початківців</strong></div>
         <div style="font-size: 0.85rem; margin-top: 4px;">
           Разом складаємо план навчання, відпрацьовуємо практику та готуємося до реальних задач.
@@ -71,14 +74,14 @@
   </section>
 
   <!-- ABOUT -->
-  <section id="about">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <div class="section-title">Про мене</div>
-          <div class="section-subtitle">Хто я і як можу допомогти</div>
-        </div>
+<section id="about">
+  <div class="container">
+    <header class="section-header">
+      <div>
+        <h2 class="section-title">Про мене</h2>
+        <h3 class="section-subtitle">Хто я і як можу допомогти</h3>
       </div>
+    </header>
 
       <div class="about-grid">
         <div class="about-card">
@@ -116,8 +119,8 @@
     <div class="container">
       <div class="section-header">
         <div>
-          <div class="section-title">Програми менторства</div>
-          <div class="section-subtitle">Обери формат, який підходить саме тобі</div>
+          <h2 class="section-title">Програми менторства</h2>
+          <h3 class="section-subtitle">Обери формат, який підходить саме тобі</h3>
         </div>
       </div>
 
@@ -150,14 +153,56 @@
     </div>
   </section>
 
+  <section id="plans-table">
+  <div class="container">
+    <header class="section-header">
+      <div>
+        <h2 class="section-title">Порівняння програм</h2>
+        <h3 class="section-subtitle">Коротко про формат кожної програми</h3>
+      </div>
+    </header>
+
+      <table border="1" cellpadding="6" cellspacing="0" style="width:100%; border-collapse:collapse;">
+        <thead>
+          <tr>
+            <th>Програма</th>
+            <th>Рівень</th>
+            <th>Тривалість</th>
+            <th>Фокус</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>QA Starter</td>
+            <td>Beginner</td>
+            <td>4 тижні</td>
+            <td>Базова теорія, перші тест-кейси</td>
+          </tr>
+          <tr>
+            <td>Job Ready</td>
+            <td>Pre-Junior</td>
+            <td>3–4 тижні</td>
+            <td>Резюме, LinkedIn, співбесіди</td>
+          </tr>
+          <tr>
+            <td>Practice &amp; Feedback</td>
+            <td>Mixed</td>
+            <td>Індивідуально</td>
+            <td>Розбір завдань, фідбек по роботах</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</section>
+
   <!-- TESTIMONIALS -->
   <section id="testimonials">
     <div class="container">
       <div class="section-header">
         <div>
-          <div class="section-title">Відгуки учнів</div>
-          <div class="section-subtitle">Коротко про досвід тих, хто вже пройшов менторство</div>
-        </div>
+          <h2 class="section-title">Відгуки учнів</h2>
+          <h3 class="section-subtitle">Коротко про досвід тих, хто вже пройшов менторство</div>
+          </h3>
       </div>
 
       <div class="card-grid">
@@ -185,8 +230,8 @@
     <div class="container">
       <div class="section-header">
         <div>
-          <div class="section-title">FAQ</div>
-          <div class="section-subtitle">Часті запитання про менторство</div>
+          <h2 class="section-title">FAQ</h2>
+          <h3 class="section-subtitle">Часті запитання про менторство</h3>
         </div>
       </div>
 
@@ -216,9 +261,9 @@
     <div class="container">
       <div class="section-header">
         <div>
-          <div class="section-title">Залишити заявку</div>
-          <div class="section-subtitle">Напиши кілька слів про себе — і я зв’яжусь з тобою</div>
-        </div>
+          <h2 class="section-title">Залишити заявку</h2>
+          <h3 class="section-subtitle">Напиши кілька слів про себе — і я зв’яжусь з тобою</div>
+          </h3>
       </div>
 
       <div class="contact-grid">
@@ -250,11 +295,13 @@
 
         <div class="contact-side">
           <p><strong>Як проходить робота:</strong></p>
-          <ul>
-            <li>Ти залишаєш заявку з коротким описом свого запиту.</li>
-            <li>Я відповідаю на email і пропоную варіанти часу.</li>
-            <li>Проводимо першу сесію, визначаємо план.</li>
-          </ul>
+          <ol>
+              <li>Ти залишаєш заявку через форму на сайті.</li>
+              <li>Я читаю твій запит і пишу на email з пропозиціями часу.</li>
+              <li>Проводимо першу зустріч і визначаємо план навчання.</li>
+              <li>Регулярно зустрічаємось, виконуємо завдання та розбираємо помилки.</li>
+              <li>Готуємося до співбесіди та пошуку першої роботи.</li>
+          </ol>
           <div class="contact-highlight">
             Якщо ти ще не впевнений(а), що менторство тобі підходить — можна почати з
             однієї ознайомчої сесії.
