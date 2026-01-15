@@ -291,7 +291,7 @@
 
   <!-- ===== JS: send form to Apps Script ===== -->
   <script>
-  const APPS_SCRIPT_URL = "https://script.google.com/a/macros/edu.kpi.ua/s/AKfycbxcDviIzJKgYS4OYudTfpSrio6NnQzoSkoKf4nV3sOYFFyxoZ5B89A8t10KICpNY22TgQ/exec";
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzbo6YHy7YE1o-si4OcJClaia3x0dziK6WSIc6TBEGGtumlOS9mhFUV2RUjdvxjitcC1A/exec";
 
   const form = document.getElementById("leadForm");
   const statusBox = document.getElementById("formStatus");
@@ -330,9 +330,9 @@
 
     try {
       const res = await fetch(APPS_SCRIPT_URL, {
-        method: "POST",
-        body: formData, // 🔥 КЛЮЧОВА ЗМІНА
-      });
+            method: "POST",
+            body: new FormData(form)
+            });
 
       if (!res.ok) throw new Error("Network error");
 
