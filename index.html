@@ -291,76 +291,61 @@
 
   <!-- ===== JS: send form to Apps Script ===== -->
   <script>
-    // 1) Paste your deployed Apps Script Web App URL here:
-    const APPS_SCRIPT_URL = "https://script.google.com/a/macros/edu.kpi.ua/s/AKfycbz0H_sNV1whRJTUnXVqxOEH9BaGP5eyDnwHy18p__vnvb2prK4xFLLnlkGzJg6B26eHlA/exec";
+  const APPS_SCRIPT_URL = "https://script.google.com/a/macros/edu.kpi.ua/s/AKfycbxcDviIzJKgYS4OYudTfpSrio6NnQzoSkoKf4nV3sOYFFyxoZ5B89A8t10KICpNY22TgQ/exec";
 
-    const form = document.getElementById("leadForm");
-    const statusBox = document.getElementById("formStatus");
-    const submitBtn = document.getElementById("submitBtn");
-    const pageUrlInput = document.getElementById("pageUrl");
+  const form = document.getElementById("leadForm");
+  const statusBox = document.getElementById("formStatus");
+  const submitBtn = document.getElementById("submitBtn");
+  const pageUrlInput = document.getElementById("pageUrl");
 
-    pageUrlInput.value = window.location.href;
+  pageUrlInput.value = window.location.href;
 
-    function setStatus(type, text) {
-      statusBox.hidden = false;
-      statusBox.className = "status " + type;
-      statusBox.textContent = text;
+  function setStatus(type, text) {
+    statusBox.hidden = false;
+    statusBox.className = "status " + type;
+    statusBox.textContent = text;
+  }
+
+  function setLoading(isLoading) {
+    submitBtn.disabled = isLoading;
+    submitBtn.textContent = isLoading ? "Надсилаємо..." : "Надіслати заявку";
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes("PASTE")) {
+      setStatus("error", "Web App URL не налаштований.");
+      return;
     }
 
-    function setLoading(isLoading) {
-      submitBtn.disabled = isLoading;
-      submitBtn.textContent = isLoading ? "Надсилаємо..." : "Надіслати заявку";
+    setLoading(true);
+    setStatus("info", "Відправка заявки...");
+
+    const formData = new FormData(form);
+
+    // додаткові дані
+    formData.append("clientTime", new Date().toISOString());
+    formData.append("pageUrl", window.location.href);
+
+    try {
+      const res = await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        body: formData, // 🔥 КЛЮЧОВА ЗМІНА
+      });
+
+      if (!res.ok) throw new Error("Network error");
+
+      setStatus("success", "Заявку надіслано. Ми зв’яжемося з тобою.");
+      form.reset();
+      pageUrlInput.value = window.location.href;
+
+    } catch (err) {
+      setStatus("error", "Помилка мережі або доступу. Перевір Web App URL.");
+    } finally {
+      setLoading(false);
     }
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes("https://nnaidonova.github.io/zpi51_appWEB-NaidonovaNadiia-FIOT-2025/")) {
-        setStatus("error", "Не налаштовано URL Apps Script. Встав Web App URL у код (APPS_SCRIPT_URL).");
-        return;
-      }
-
-      setLoading(true);
-      setStatus("info", "Відправка заявки...");
-
-      // Collect data
-      const fd = new FormData(form);
-
-      // We send as JSON to Apps Script
-      const payload = {};
-      fd.forEach((value, key) => payload[key] = value);
-
-      // Add client timestamp
-      payload.clientTime = new Date().toISOString();
-
-      try {
-        const res = await fetch(APPS_SCRIPT_URL, {
-          method: "POST",
-          mode: "cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-
-        // Apps Script returns JSON
-        const data = await res.json().catch(() => ({}));
-
-        if (!res.ok || data.ok !== true) {
-          const msg = data && data.error ? data.error : "Не вдалося відправити заявку. Спробуй ще раз.";
-          setStatus("error", msg);
-          setLoading(false);
-          return;
-        }
-
-        setStatus("success", "Заявку надіслано. Ми зв’яжемося з тобою найближчим часом.");
-        form.reset();
-        pageUrlInput.value = window.location.href; // restore after reset
-        setLoading(false);
-
-      } catch (err) {
-        setStatus("error", "Помилка мережі або доступу. Перевір Web App URL та налаштування деплою.");
-        setLoading(false);
-      }
-    });
-  </script>
+  });
+</script>
 </body>
 </html>
