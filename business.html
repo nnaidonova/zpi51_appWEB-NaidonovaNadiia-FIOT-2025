@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="WakeFlow — опис предметної галузі, бізнес-логіки та вимог для веб-застосунку вейк-школи." />
+  <title>WakeFlow — Бізнес-логіка та вимоги</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- ===== HEADER / NAV ===== -->
+  <header>
+    <div>
+     <a href="index.html" aria-label="Main page">
+        <img id="WakeFlow_logo" src="img/logo.png" alt="WakeFlow_logo" width="100" />
+      </a>
+    </div>
+
+    <nav aria-label="Головна навігація">
+      <ul>
+        <li><a href="index.html">Головна</a></li>
+        <li><a href="#domain">Предметна галузь</a></li>
+        <li><a href="#processes">Процеси</a></li>
+        <li><a href="#rules">Бізнес-правила</a></li>
+        <li><a href="#requirements">Вимоги</a></li>
+        <li><a href="#data">Сутності</a></li>
+        <li><a href="#scenarios">Сценарії</a></li>
+        <li><a href="#integration">Інтеграція</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main>
+    <!-- HERO -->
+    <section aria-labelledby="page-title">
+      <figure>
+        <img src="img/hero.png" alt="Вейкбординг (демо-банер)" width="1200" />
+        <figcaption>Документація: бізнес-логіка та вимоги (навчальний проєкт).</figcaption>
+      </figure>
+
+      <h1 id="page-title">WakeFlow — бізнес-логіка та вимоги</h1>
+      <p>
+        Ця сторінка описує предметну галузь вейк-школи, основні бізнес-процеси,
+        правила та вимоги до веб-застосунку. Контент підготовлено українською мовою
+        з використанням тестових назв і медіа.
+      </p>
+
+      <p>
+        <a class="btn primary" href="index.html">Повернутися на головну</a>
+        <a class="btn" href="#scenarios">Перейти до сценаріїв</a>
+      </p>
+    </section>
+
+    <!-- DOMAIN -->
+    <section id="domain" aria-labelledby="domain-title">
+      <h2 id="domain-title">1. Предметна галузь</h2>
+      <p>
+        Вейк-школа — це сервісна організація, яка надає навчання вейкбордингу та супутні послуги.
+        Основна цінність для клієнта — безпечний вхід у спорт або прогрес у техніці під контролем інструктора.
+        Для школи критично важливі: комунікація з клієнтом, запис/підтвердження занять, контроль ресурсу
+        (час інструкторів, локація, спорядження), а також збереження заявок і контактів.
+      </p>
+
+      <article aria-labelledby="domain-services-title">
+        <h3 id="domain-services-title">1.1. Типові послуги</h3>
+        <ul>
+          <li>Індивідуальні заняття з інструктором (для новачків і середнього рівня)</li>
+          <li>Мінігрупи (2–3 людини) — економія вартості та командна мотивація</li>
+          <li>Оренда спорядження (дошка, жилет, шолом тощо)</li>
+          <li>Пакети/абонементи (серія занять зі знижкою)</li>
+          <li>Додаткові опції: фото/відео, консультації, розбір техніки</li>
+        </ul>
+      </article>
+
+      <article aria-labelledby="domain-actors-title">
+        <h3 id="domain-actors-title">1.2. Учасники</h3>
+        <ul>
+          <li><strong>Клієнт</strong> — обирає послугу, залишає заявку, отримує підтвердження.</li>
+          <li><strong>Адміністратор</strong> — обробляє заявку, уточнює деталі, підтверджує запис.</li>
+          <li><strong>Інструктор</strong> — проводить заняття, забезпечує безпеку, дає фідбек.</li>
+          <li><strong>Система (веб-застосунок)</strong> — публікує інформацію та збирає заявки.</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- PROCESSES -->
+    <section id="processes" aria-labelledby="processes-title">
+      <h2 id="processes-title">2. Основні бізнес-процеси</h2>
+      <p>
+        У межах навчального веб-застосунку реалізуємо базовий цикл “інформація → заявка → збереження в таблиці”.
+        Підтвердження та виконання заняття описуються як логічні кроки (поза межами статичного фронтенду).
+      </p>
+
+      <article aria-labelledby="process-1-title">
+        <h3 id="process-1-title">2.1. Інформування клієнта</h3>
+        <ol>
+          <li>Клієнт відкриває головну сторінку.</li>
+          <li>Переглядає розділи: Про школу, Послуги, Команда, Галерея, Контакти.</li>
+          <li>Переходить до форми запису.</li>
+        </ol>
+      </article>
+
+      <article aria-labelledby="process-2-title">
+        <h3 id="process-2-title">2.2. Збір заявки</h3>
+        <ol>
+          <li>Клієнт заповнює обов’язкові поля (ПІБ, телефон, рівень, формат).</li>
+          <li>За потреби додає email, дату та коментар.</li>
+          <li>Погоджується з обробкою персональних даних.</li>
+          <li>Надсилає форму.</li>
+        </ol>
+      </article>
+
+      <article aria-labelledby="process-3-title">
+        <h3 id="process-3-title">2.3. Обробка заявки</h3>
+        <ol>
+          <li>Система передає дані в Google Apps Script.</li>
+          <li>Apps Script записує заявку у Google Sheet (лист “Leads”).</li>
+          <li>Адміністратор переглядає таблицю та контактує з клієнтом для підтвердження.</li>
+        </ol>
+      </article>
+    </section>
+
+    <!-- BUSINESS RULES -->
+    <section id="rules" aria-labelledby="rules-title">
+      <h2 id="rules-title">3. Бізнес-правила</h2>
+      <p>Нижче наведено правила, яких дотримується система збору заявок.</p>
+
+      <ul>
+        <li><strong>BR-01.</strong> Для створення заявки обов’язкові: ПІБ та телефон.</li>
+        <li><strong>BR-02.</strong> Клієнт має обрати рівень підготовки та формат заняття.</li>
+        <li><strong>BR-03.</strong> Email — необов’язковий.</li>
+        <li><strong>BR-04.</strong> Дата є бажаною; остаточне підтвердження здійснює адміністратор.</li>
+        <li><strong>BR-05.</strong> Без згоди на обробку персональних даних форма не відправляється.</li>
+        <li><strong>BR-06.</strong> Кожна заявка зберігається в таблиці з часовою міткою сервера і клієнта.</li>
+      </ul>
+    </section>
+
+    <!-- REQUIREMENTS -->
+    <section id="requirements" aria-labelledby="req-title">
+      <h2 id="req-title">4. Вимоги до веб-застосунку</h2>
+
+      <article aria-labelledby="req-func-title">
+        <h3 id="req-func-title">4.1. Функціональні вимоги</h3>
+        <ul>
+          <li><strong>FR-01.</strong> Відображати інформаційні розділи: Про школу, Послуги, Команда, Галерея, Контакти.</li>
+          <li><strong>FR-02.</strong> Відображати таблицю послуг з тестовими цінами.</li>
+          <li><strong>FR-03.</strong> Надавати форму запису на заняття.</li>
+          <li><strong>FR-04.</strong> Після відправки форми зберігати заявку у Google Sheets через Apps Script.</li>
+          <li><strong>FR-05.</strong> Показувати користувачу статус: “відправка / успіх / помилка”.</li>
+          <li><strong>FR-06.</strong> Мати навігацію по якорях та перехід на сторінку бізнес-логіки.</li>
+        </ul>
+      </article>
+
+      <article aria-labelledby="req-nonfunc-title">
+        <h3 id="req-nonfunc-title">4.2. Нефункціональні вимоги</h3>
+        <ul>
+          <li><strong>NFR-01.</strong> Семантична верстка (header/nav/main/section/article/footer).</li>
+          <li><strong>NFR-02.</strong> Адаптивність на базовому рівні для мобільних екранів.</li>
+          <li><strong>NFR-03.</strong> Доступність: alt для зображень, aria-label для навігації, читабельність тексту.</li>
+          <li><strong>NFR-04.</strong> Захист від некоректного вводу: required поля у формі, перевірка на клієнті.</li>
+          <li><strong>NFR-05.</strong> Стале збереження заявок у Google Sheet (журнал заявок).</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- DATA MODEL -->
+    <section id="data" aria-labelledby="data-title">
+      <h2 id="data-title">5. Дані та сутності</h2>
+      <p>
+        Для інтеграції зі збором заявок визначено мінімальний набір сутностей та полів.
+        Це дозволяє організувати структуру таблиці та подальший розвиток (CRM/адмін-панель).
+      </p>
+
+      <article aria-labelledby="data-entities-title">
+        <h3 id="data-entities-title">5.1. Сутності</h3>
+        <ul>
+          <li><strong>Client</strong>: fullName, phone, email (optional).</li>
+          <li><strong>Lead (Заявка)</strong>: level, format, date(optional), message(optional), agree.</li>
+          <li><strong>Metadata</strong>: source, pageUrl, clientTime, serverTime.</li>
+        </ul>
+      </article>
+
+      <article aria-labelledby="data-columns-title">
+        <h3 id="data-columns-title">5.2. Колонки таблиці Google Sheet</h3>
+        <div class="table-wrap" role="region" aria-label="Структура таблиці заявок">
+          <table aria-label="Колонки Google Sheet для заявок">
+            <caption>Leads (мінімальна структура)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Колонка</th>
+                <th scope="col">Опис</th>
+                <th scope="col">Джерело</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>serverTime</td>
+                <td>Час отримання заявки на сервері Apps Script</td>
+                <td>Apps Script</td>
+              </tr>
+              <tr>
+                <td>clientTime</td>
+                <td>Час відправки заявки з браузера</td>
+                <td>JS (fetch)</td>
+              </tr>
+              <tr>
+                <td>fullName</td>
+                <td>ПІБ клієнта</td>
+                <td>Форма</td>
+              </tr>
+              <tr>
+                <td>phone</td>
+                <td>Телефон</td>
+                <td>Форма</td>
+              </tr>
+              <tr>
+                <td>email</td>
+                <td>Email (необов’язково)</td>
+                <td>Форма</td>
+              </tr>
+              <tr>
+                <td>level</td>
+                <td>Рівень підготовки</td>
+                <td>Форма</td>
+              </tr>
+              <tr>
+                <td>format</td>
+                <td>Формат заняття</td>
+                <td>Форма</td>
+              </tr>
+              <tr>
+                <td>date</td>
+                <td>Бажана дата</td>
+                <td>Форма</td>
+              </tr>
+              <tr>
+                <td>message</td>
+                <td>Коментар</td>
+                <td>Форма</td>
+              </tr>
+              <tr>
+                <td>agree</td>
+                <td>Згода на обробку даних</td>
+                <td>Форма</td>
+              </tr>
+              <tr>
+                <td>source</td>
+                <td>Джерело заявки (мітка)</td>
+                <td>Hidden input</td>
+              </tr>
+              <tr>
+                <td>pageUrl</td>
+                <td>URL сторінки, з якої відправлено заявку</td>
+                <td>Hidden input + JS</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <!-- SCENARIOS -->
+    <section id="scenarios" aria-labelledby="scenarios-title">
+      <h2 id="scenarios-title">6. Сценарії використання</h2>
+
+      <article aria-labelledby="uc1-title">
+        <h3 id="uc1-title">UC-01: Переглянути послуги</h3>
+        <p><strong>Актор:</strong> Клієнт</p>
+        <p><strong>Передумови:</strong> сайт доступний</p>
+        <p><strong>Основний потік:</strong></p>
+        <ol>
+          <li>Клієнт відкриває сайт.</li>
+          <li>Переходить у розділ “Послуги”.</li>
+          <li>Переглядає таблицю цін.</li>
+        </ol>
+        <p><strong>Результат:</strong> клієнт отримав інформацію для вибору.</p>
+      </article>
+
+      <article aria-labelledby="uc2-title">
+        <h3 id="uc2-title">UC-02: Надіслати заявку</h3>
+        <p><strong>Актор:</strong> Клієнт</p>
+        <p><strong>Тригер:</strong> намір записатися на заняття</p>
+        <p><strong>Передумови:</strong> заповнені обов’язкові поля, поставлена згода</p>
+        <p><strong>Основний потік:</strong></p>
+        <ol>
+          <li>Клієнт заповнює форму запису.</li>
+          <li>Натискає “Надіслати заявку”.</li>
+          <li>JS формує JSON та відправляє його в Apps Script (POST).</li>
+          <li>Apps Script записує заявку в Google Sheet.</li>
+          <li>Сайт показує повідомлення про успіх.</li>
+        </ol>
+        <p><strong>Альтернативи/помилки:</strong></p>
+        <ul>
+          <li>Якщо відсутні обов’язкові поля — форма не відправляється (валідація браузера).</li>
+          <li>Якщо помилка мережі/URL — сайт показує повідомлення про помилку.</li>
+        </ul>
+        <p><strong>Результат:</strong> заявка збережена в таблиці, користувач отримав підтвердження.</p>
+      </article>
+
+      <article aria-labelledby="uc3-title">
+        <h3 id="uc3-title">UC-03: Переглянути заявки</h3>
+        <p><strong>Актор:</strong> Адміністратор</p>
+        <p><strong>Передумови:</strong> є доступ до Google Sheet</p>
+        <p><strong>Основний потік:</strong></p>
+        <ol>
+          <li>Адміністратор відкриває Google Sheet.</li>
+          <li>Фільтрує/сортує заявки за датою/контактом.</li>
+          <li>Зв’язується з клієнтом і підтверджує деталі.</li>
+        </ol>
+        <p><strong>Результат:</strong> заявка оброблена та підтверджена.</p>
+      </article>
+    </section>
+
+    <!-- INTEGRATION -->
+    <section id="integration" aria-labelledby="integration-title">
+      <h2 id="integration-title">7. Інтеграція з Google Sheets через Apps Script</h2>
+      <p>
+        Для збереження заявок використовується Google Apps Script, розгорнутий як Web App.
+        Сайт відправляє POST-запит у форматі JSON, а Apps Script додає рядок у Google Sheet.
+      </p>
+
+      <article aria-labelledby="integration-steps-title">
+        <h3 id="integration-steps-title">7.1. Кроки інтеграції</h3>
+        <ol>
+          <li>Створити Google Sheet для заявок (лист “Leads”).</li>
+          <li>Додати Apps Script з функцією <code>doPost</code>.</li>
+          <li>Deploy як Web App (Execute as: Me; Access: Anyone).</li>
+          <li>Вставити Web App URL у змінну <code>APPS_SCRIPT_URL</code> на головній сторінці.</li>
+          <li>Перевірити, що після відправки форми рядок з’являється в таблиці.</li>
+        </ol>
+      </article>
+
+      <article aria-labelledby="integration-security-title">
+        <h3 id="integration-security-title">7.2. Примітки щодо доступу</h3>
+        <ul>
+          <li>У навчальному проєкті доступ Web App дозволений “Anyone” для роботи зі статичного хостингу.</li>
+          <li>У продакшені доцільно додати захист (ключ, токен, reCAPTCHA, rate-limit).</li>
+        </ul>
+      </article>
+
+      <p>
+        <a class="btn" href="#page-title">На початок сторінки</a>
+        <a class="btn primary" href="index.html">На головну</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>
+      © <time datetime="2026">2026</time> WakeFlow (тестовий проєкт).
+      <a href="index.html">Головна</a>
+    </p>
+  </footer>
+</body>
+</html>
