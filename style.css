@@ -71,7 +71,7 @@ header > div a{
   gap: 12px;
 }
 
-nav[aria-label="Головна навігація"] ul{
+nav[aria-label="main-navigation"] ul{
   list-style:none;
   display:flex;
   flex-wrap:wrap;
@@ -81,7 +81,7 @@ nav[aria-label="Головна навігація"] ul{
   justify-content:flex-end;
 }
 
-nav[aria-label="Головна навігація"] a{
+nav[aria-label="main-navigation"] a{
   display:inline-block;
   padding: 10px 12px;
   border-radius: 999px;
@@ -90,12 +90,12 @@ nav[aria-label="Головна навігація"] a{
   color: var(--text);
 }
 
-nav[aria-label="Головна навігація"] a:hover{
+nav[aria-label="main-navigation"] a:hover{
   border-color: var(--border);
   background: rgba(255,255,255,.05);
 }
 
-nav[aria-label="Головна навігація"] li:last-child a{
+nav[aria-label="main-navigation"] li:last-child a{
   border-color: rgba(182,255,59,.35);
   background: rgba(182,255,59,.12);
 }
@@ -437,7 +437,7 @@ footer{
 
 @media (max-width: 640px){
   header{ flex-direction: column; align-items: flex-start; }
-  nav[aria-label="Головна навігація"] ul{ justify-content: flex-start; }
+  nav[aria-label="main-navigation"] ul{ justify-content: flex-start; }
   main > section{ padding: 16px; }
   main > section:first-of-type h1{ margin-top: -240px; }
   .gallery-grid{ grid-template-columns: 1fr; }
@@ -452,3 +452,58 @@ main article{
   border-radius: 14px;
   background: rgba(255,255,255,.03);
 }
+
+
+/* ===== Fix: mobile menu smaller + horizontal scroll ===== */
+@media (max-width: 640px){
+
+  /* робимо header компактнішим */
+  header{
+    padding: 10px 0 !important;
+    gap: 10px !important;
+  }
+
+  /* nav на всю ширину */
+  nav[aria-label="main-navigation"]{
+    width: 100%;
+  }
+
+  /* один рядок + горизонтальний скрол */
+  nav[aria-label="main-navigation"] ul{
+    display: flex !important;
+    flex-wrap: nowrap !important;      /* ключове: заборона переносів */
+    justify-content: flex-start !important;
+
+    overflow-x: auto !important;       /* ключове: горизонтальний скрол */
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+
+    gap: 8px !important;
+    margin: 0 !important;
+    padding: 6px 4px !important;
+
+    list-style: none;
+    scroll-snap-type: x proximity;
+  }
+
+  nav[aria-label="main-navigation"] li{
+    flex: 0 0 auto !important;         /* щоб кнопки не стискались */
+    scroll-snap-align: start;
+  }
+
+  nav[aria-label="main-navigation"] a{
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;               /* ключове: текст не переноситься */
+    font-size: 14px;
+    padding: 8px 10px;
+    border-radius: 999px;
+  }
+
+  /* опційно: трохи компактніший логотип */
+  #WakeFlow_logo{
+    width: 64px;
+    height: auto;
+  }
+}
+
